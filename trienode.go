@@ -56,20 +56,6 @@ func (node *TrieNode) insert(pattern string) {
 	child.insert(string(pattern[1:]))
 }
 
-// check return if the the children match pattern
-// result -1: no matched; 0: matched, but just a substring; else:matched frequency
-func (node *TrieNode) check(pattern string) int {
-	first := pattern[0]
-	child, ok := node.children[first]
-	if !ok {
-		return -1
-	}
-	if len(pattern) == 1 {
-		return child.frequency
-	}
-	return child.check(string(pattern[1:]))
-}
-
 func (node *TrieNode) match(pattern string) *TrieNode {
 	first := pattern[0]
 	child, ok := node.children[first]
